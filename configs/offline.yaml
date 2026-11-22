@@ -1,0 +1,28 @@
+# Offline smoke test: bundled fixture, fake LLM, hashing embedder. No API key, no downloads.
+run_name: offline-smoke
+artifacts_dir: artifacts/offline-smoke
+results_dir: results/offline-smoke
+offline: true
+
+data:
+  dataset: fixture
+  n_questions: 100
+  seed: 13
+
+models:
+  extraction: fake
+  generation: fake
+  judge: fake
+  effort: {extraction: low, generation: low, judge: low}
+
+embedding:
+  model: hashing
+
+retrieval:
+  top_k: 3
+  graph_hops: 2
+  graph_seed_entities: 5
+  max_context_tokens: 3000
+
+pipelines: [closed_book, vector_rag, graph_rag, hybrid]
+use_judge: true

@@ -1,0 +1,37 @@
+# Free run ($0): local open models via Ollama + local bge embeddings on a HotpotQA sample.
+# Bigger run for a free Colab T4 or Kaggle GPU session (see docs/FREE_RUN.md).
+# Before running:  ollama pull qwen2.5:7b-instruct && ollama pull llama3.1:8b
+run_name: hotpotqa-gpu-v1
+artifacts_dir: artifacts/hotpotqa-gpu-v1
+results_dir: results/hotpotqa-gpu-v1
+offline: false
+workers: 4                    # set OLLAMA_NUM_PARALLEL=4 before `ollama serve`
+
+data:
+  dataset: hotpotqa           # hotpotqa | fixture   (musique lands in M3)
+  split: validation
+  n_questions: 300            # 150 bridge + 150 comparison
+  distractors_per_question: 8 # full HotpotQA distractor setting, up to ~3k paragraphs
+  seed: 13
+
+models:
+  # Backend is picked by prefix: "ollama:<model>" (free, local), "claude-<id>" (paid, optional), "fake" (tests).
+  extraction: ollama:qwen2.5:7b-instruct
+  generation: ollama:qwen2.5:7b-instruct
+  judge: ollama:llama3.1:8b   # different model family from the generator to reduce self-preference bias
+  effort:                     # only used by Claude models; ignored by Ollama
+    extraction: low
+    generation: low
+    judge: low
+
+embedding:
+  model: BAAI/bge-base-en-v1.5   # runs locally via sentence-transformers
+
+retrieval:
+  top_k: 5
+  graph_hops: 2
+  graph_seed_entities: 5
+  max_context_tokens: 3000
+
+pipelines: [closed_book, vector_rag, graph_rag, hybrid]
+use_judge: true
