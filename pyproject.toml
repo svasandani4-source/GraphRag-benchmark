@@ -1,0 +1,40 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "graphrag-bench"
+version = "0.1.0"
+description = "An honest benchmark of GraphRAG vs vector RAG on multi-hop QA: accuracy, cost and latency."
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+  "httpx>=0.27",
+  "numpy>=1.26",
+  "networkx>=3.2",
+  "pydantic>=2.6",
+  "pyyaml>=6",
+  "tqdm>=4.66",
+]
+
+[project.optional-dependencies]
+claude = ["anthropic>=2.12"]
+embed = ["sentence-transformers>=3.0"]
+data = ["datasets>=2.19"]
+neo4j = ["neo4j>=5.20"]
+app = ["streamlit>=1.36", "pandas>=2.2", "plotly>=5.22", "pyvis>=0.3"]
+dev = ["pytest>=8"]
+all = ["graphrag-bench[embed,data,neo4j,app,dev]"]   # free stack; add [claude] only if you want paid runs
+
+[project.scripts]
+grb = "grb.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+grb = ["data/fixtures/*.json"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]

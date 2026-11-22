@@ -1,0 +1,29 @@
+{
+  "_note": "Synthetic, fictional multi-hop QA fixture for offline tests. Not real facts.",
+  "paragraphs": [
+    {"title": "Velmora Institute", "text": "The Velmora Institute is a research university in the city of Ostrand. It was founded in 1891 by the chemist Idris Kael."},
+    {"title": "Idris Kael", "text": "Idris Kael was a chemist born in the village of Brennock. Kael is best known for discovering the compound tessarine."},
+    {"title": "Brennock", "text": "Brennock is a fishing village on the coast of Lysmar. Brennock has a population of about 900 people."},
+    {"title": "Ostrand", "text": "Ostrand is the capital of the province of Calder. Ostrand sits on the Mirel River."},
+    {"title": "Calder", "text": "Calder is a province in the republic of Lysmar. The governor of Calder is Sefa Odun."},
+    {"title": "Sefa Odun", "text": "Sefa Odun is a politician who studied law at the Harlow College. Odun became governor in 2019."},
+    {"title": "Harlow College", "text": "Harlow College is a liberal arts college in the town of Pellin. Harlow College was founded in 1902."},
+    {"title": "Tessarine", "text": "Tessarine is a blue crystalline compound used in early photographic plates."},
+    {"title": "Mirel River", "text": "The Mirel River flows 410 kilometres from the Dun Mountains to the Grey Sea."},
+    {"title": "Dun Mountains", "text": "The Dun Mountains are a range in northern Lysmar whose highest peak is Mount Arrow."},
+    {"title": "Northwind Orchestra", "text": "The Northwind Orchestra is based in Pellin. Its principal conductor is Mara Voss."},
+    {"title": "Mara Voss", "text": "Mara Voss is a conductor who was born in Ostrand in 1975."},
+    {"title": "Pellin", "text": "Pellin is a market town in the province of Varro, known for its wool trade."},
+    {"title": "Varro", "text": "Varro is a province in the republic of Lysmar. Its capital is Quell."}
+  ],
+  "questions": [
+    {"id": "fx1", "question": "In which village was the founder of the Velmora Institute born?", "answer": "Brennock", "type": "bridge", "hops": 2, "supporting_titles": ["Velmora Institute", "Idris Kael"]},
+    {"id": "fx2", "question": "Which compound was discovered by the founder of the Velmora Institute?", "answer": "tessarine", "type": "bridge", "hops": 2, "supporting_titles": ["Velmora Institute", "Idris Kael"]},
+    {"id": "fx3", "question": "Who is the governor of the province whose capital is the city of the Velmora Institute?", "answer": "Sefa Odun", "type": "bridge", "hops": 3, "supporting_titles": ["Velmora Institute", "Ostrand", "Calder"]},
+    {"id": "fx4", "question": "In which town is the college where the governor of Calder studied law?", "answer": "Pellin", "type": "bridge", "hops": 2, "supporting_titles": ["Calder", "Sefa Odun", "Harlow College"]},
+    {"id": "fx5", "question": "In which province is the town where the governor of Calder studied law?", "answer": "Varro", "type": "bridge", "hops": 4, "supporting_titles": ["Calder", "Sefa Odun", "Harlow College", "Pellin"]},
+    {"id": "fx6", "question": "Which mountain range is the source of the river that flows through Ostrand?", "answer": "Dun Mountains", "type": "bridge", "hops": 2, "supporting_titles": ["Ostrand", "Mirel River"]},
+    {"id": "fx7", "question": "Which was founded first, the Velmora Institute or Harlow College?", "answer": "Velmora Institute", "type": "comparison", "hops": 2, "supporting_titles": ["Velmora Institute", "Harlow College"]},
+    {"id": "fx8", "question": "Who is the principal conductor of the orchestra based in the town where Sefa Odun studied?", "answer": "Mara Voss", "type": "bridge", "hops": 3, "supporting_titles": ["Sefa Odun", "Harlow College", "Northwind Orchestra"]}
+  ]
+}

@@ -1,0 +1,10 @@
+# Optional: local Neo4j for exploring the extracted graph with Cypher.
+# The benchmark itself runs the graph in-process (NetworkX) so latency comparisons stay fair.
+services:
+  neo4j:
+    image: neo4j:5.26
+    ports: ["7474:7474", "7687:7687"]
+    environment:
+      NEO4J_AUTH: neo4j/please-change-me
+      NEO4J_PLUGINS: '["apoc"]'
+    volumes: ["./artifacts/neo4j:/data"]
