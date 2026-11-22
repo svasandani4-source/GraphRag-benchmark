@@ -24,6 +24,7 @@ Start with `n_questions: 25` in `configs/default.yaml` to see results within an 
 In a notebook cell (Colab: Runtime → Change runtime type → T4 GPU):
 
 ```bash
+!apt-get -qq install -y zstd   # the Ollama installer needs zstd, which Colab lacks
 !curl -fsSL https://ollama.com/install.sh | sh
 !nohup env OLLAMA_NUM_PARALLEL=4 ollama serve > ollama.log 2>&1 &
 !sleep 5 && ollama pull qwen2.5:7b-instruct && ollama pull llama3.1:8b
